@@ -195,4 +195,62 @@ ALTER TABLE products ALTER COLUMN product_no SET NOT NULL;
 
 ALTER TABLE products DROP CONSTRAINT some_name;
 
+ALTER TABLE products ADD COLUMN description text;
+
+ALTER TABLE products ADD COLUMN description text CHECK (description <> '');
+
+ALTER TABLE products DROP COLUMN description;
+
+ALTER TABLE products DROP COLUMN description CASCADE;
+
+ALTER TABLE products ADD CHECK (name <> '');
+ALTER TABLE products ADD CONSTRAINT some_name UNIQUE (product_no);
+ALTER TABLE products ADD FOREIGN KEY (product_group_id) REFERENCES product_groups;
+
+ALTER TABLE products ALTER COLUMN product_no SET NOT NULL;
+
+ALTER TABLE products DROP CONSTRAINT some_name;
+
+ALTER TABLE products ALTER COLUMN product_no DROP NOT NULL;
+
+ALTER TABLE products ALTER COLUMN price SET DEFAULT 7.77;
+
+ALTER TABLE products ALTER COLUMN price DROP DEFAULT;
+
+ALTER TABLE products ALTER COLUMN price TYPE numeric(10,2);
+
+ALTER TABLE products RENAME COLUMN product_no TO product_number;
+
+ALTER TABLE products RENAME TO items;
+
+SELECT * FROM products
+
+CREATE TABLE t1(
+	num int,
+	name varchar(80)
+);
+
+INSERT INTO t1(num,name) VALUES (1,'a');
+INSERT INTO t1(num,name) VALUES (2,'b');
+INSERT INTO t1(num,name) VALUES (3,'c');
+
+CREATE TABLE t2(
+	num int,
+	value varchar(80)
+);
+
+INSERT INTO t2(num,value) VALUES (1,'xxx');
+INSERT INTO t2(num,value) VALUES (3,'yyy');
+INSERT INTO t2(num,value) VALUES (5,'zzz');
+
+SELECT * FROM t1 CROSS JOIN t2;
+SELECT * FROM t1 INNER JOIN t2 ON t1.num = t2.num;
+SELECT * FROM t1 INNER JOIN t2 USING (num);
+SELECT * FROM t1 NATURAL INNER JOIN t2;
+SELECT * FROM t1 LEFT JOIN t2 ON t1.num = t2.num;
+SELECT * FROM t1 LEFT JOIN t2 USING (num);
+SELECT * FROM t1 RIGHT JOIN t2 ON t1.num = t2.num;
+SELECT * FROM t1 FULL JOIN t2 ON t1.num = t2.num;
+SELECT * FROM t1 LEFT JOIN t2 ON t1.num = t2.num AND t2.value = 'xxx';
+SELECT * FROM t1 LEFT JOIN t2 ON t1.num = t2.num WHERE t2.value = 'xxx';
 
