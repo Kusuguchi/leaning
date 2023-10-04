@@ -254,3 +254,9 @@ SELECT * FROM t1 FULL JOIN t2 ON t1.num = t2.num;
 SELECT * FROM t1 LEFT JOIN t2 ON t1.num = t2.num AND t2.value = 'xxx';
 SELECT * FROM t1 LEFT JOIN t2 ON t1.num = t2.num WHERE t2.value = 'xxx';
 
+SELECT * FROM t1;
+SELECT * FROM t1 WHERE num=2;
+UPDATE t1 SET name='bb' WHERE num=2;
+
+
+
